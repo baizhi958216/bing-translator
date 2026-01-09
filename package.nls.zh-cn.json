@@ -1,0 +1,9 @@
+{
+  "displayName": "Bing 翻译器",
+  "description": "使用必应翻译快速翻译文本，支持键盘快捷键和状态栏按钮",
+  "command.translate.title": "翻译文本",
+  "command.translateSelection.title": "翻译选中内容",
+  "config.title": "Bing 翻译器",
+  "config.sourceLanguage.description": "源语言代码（例如：'en' 表示英语，'auto-detect' 表示自动检测）",
+  "config.targetLanguage.description": "目标语言代码（例如：'zh-Hans' 表示简体中文）"
+}

@@ -1,0 +1,9 @@
+{
+  "displayName": "Bing Translator",
+  "description": "Quickly translate text using Bing Translator with keyboard shortcut or status bar button",
+  "command.translate.title": "Translate Text",
+  "command.translateSelection.title": "Translate Selection",
+  "config.title": "Bing Translator",
+  "config.sourceLanguage.description": "Source language code (e.g., 'en' for English, 'auto-detect' for auto-detection)",
+  "config.targetLanguage.description": "Target language code (e.g., 'zh-Hans' for Chinese Simplified)"
+}

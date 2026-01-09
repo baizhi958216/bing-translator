@@ -1,0 +1,92 @@
+{
+  "name": "bing-translator",
+  "displayName": "%displayName%",
+  "description": "%description%",
+  "version": "1.0.2",
+  "publisher": "baizhi958216",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/baizhi958216/bing-translator"
+  },
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "translate",
+    "translator",
+    "translation",
+    "bing",
+    "language",
+    "i18n",
+    "localization",
+    "multilingual"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "bing-translator.translate",
+        "title": "%command.translate.title%"
+      },
+      {
+        "command": "bing-translator.translateSelection",
+        "title": "%command.translateSelection.title%"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "bing-translator.translate",
+        "key": "ctrl+shift+t",
+        "mac": "cmd+shift+t"
+      },
+      {
+        "command": "bing-translator.translateSelection",
+        "key": "ctrl+alt+t",
+        "mac": "cmd+alt+t",
+        "when": "editorHasSelection"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "bing-translator.translateSelection",
+          "when": "editorHasSelection",
+          "group": "9_cutcopypaste"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "%config.title%",
+      "properties": {
+        "bing-translator.sourceLanguage": {
+          "type": "string",
+          "default": "en",
+          "description": "%config.sourceLanguage.description%"
+        },
+        "bing-translator.targetLanguage": {
+          "type": "string",
+          "default": "zh-Hans",
+          "description": "%config.targetLanguage.description%"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.96.0",
+    "@types/node": "20.x",
+    "@vscode/vsce": "^3.7.1"
+  },
+  "author": "baizhi958216",
+  "license": "Apache-2.0"
+}
