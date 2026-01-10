@@ -5,6 +5,18 @@ All notable changes to the "bing-translator" extension will be documented in thi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.3] - 2026-01-10
+
+### Fixed
+- Fixed initialization failure when Bing Translator redirects to regional domains (e.g., cn.bing.com)
+- Added HTTP redirect handling in configuration fetching process
+- Made hostname dynamic to support all regional Bing domains automatically
+
+### Improved
+- Enhanced `fetchGlobalConfig()` method to follow HTTP 302 redirects
+- Added `hostname` property to track the final regional domain after redirects
+- Updated translation API requests to use the correct regional hostname
+
 ## [1.0.2] - 2026-01-10
 
 ### Added
@@ -52,20 +64,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Configuration change listener for real-time updates
 - Modular architecture with separate StatusBarManager and Commands classes
 - Simplified Bing Translator API client with token management
-
-### Features
-- Translate text via input box dialog
-- Translate selected text in editor
-- Replace selection with translation
-- Copy translation result
-- Status bar button for quick access
-- Automatic token refresh for Bing Translator API
-- Progress indicator during translation
-- Input validation
-
-### Technical
-- VSCode engine: ^1.96.0
-- No external dependencies (uses built-in Node.js modules)
-- Clean separation of concerns
-- Proper resource disposal
-- Configuration change handling
