@@ -37,7 +37,7 @@ jobs:
       - name: Create Release and Upload Asset
         uses: softprops/action-gh-release@v1
         with:
-          files: ./fast-node-switcher-${{ steps.get_version.outputs.VERSION }}.vsix
+          files: ./bing-translator-${{ steps.get_version.outputs.VERSION }}.vsix
           draft: false
           prerelease: false
           generate_release_notes: true
