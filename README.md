@@ -5,50 +5,85 @@ A simple and efficient VSCode extension for translating text using Bing Translat
 ## Features
 
 - **Quick Translation**: Translate text with keyboard shortcuts, context menu, or status bar button
+- **Dynamic Language Selection**: Choose source and target languages on-the-fly when translating
+- **Two UI Modes**:
+  - **Webview Mode** (default): Modern unified interface with all options in one panel
+  - **QuickPick Mode**: Multi-step interface with separate language selection dialogs
 - **Two Translation Modes**:
   - **Input Box Mode** (Ctrl+Shift+T): Enter text in a dialog and view translation
   - **Selection Mode** (Ctrl+Alt+T or right-click): Translate selected text in editor and optionally replace it
 - **Context Menu Integration**: Right-click on selected text to translate
-- **Configurable Languages**: Set your preferred source and target languages
+- **Configurable Languages**: Set your preferred default source and target languages
 - **Status Bar Integration**: Click the globe icon to translate, with dynamic tooltip showing current language pair
 - **Auto-detect**: Supports automatic language detection
 - **Smart Error Handling**: User-friendly error messages for common issues
+- **Multi-language Interface**: Supports English and Chinese UI
 
 ## Usage
 
+### Webview Mode (Default)
+
+When using Webview mode, you'll get a modern translation panel with all options in one place:
+
+1. Press `Ctrl+Shift+T` or click the status bar button to open the translation panel
+2. Select source language from the dropdown (or use auto-detect)
+3. Select target language from the dropdown
+4. Use the swap button (⇄) to quickly reverse source and target languages
+5. Enter or paste text to translate
+6. Click "Translate" button or press `Ctrl+Enter`
+7. View the translation result
+8. Use "Copy Result" to copy the translation
+9. Use "Replace Selection" to replace selected text in editor (when translating selection)
+
+### QuickPick Mode
+
+To use the classic multi-step interface:
+
+1. Open Settings (File > Preferences > Settings)
+2. Search for "Bing Translator"
+3. Uncheck "Use Webview UI"
+4. Now when you translate, you'll be prompted to select languages step-by-step
+
 ### Method 1: Input Box Translation (Ctrl+Shift+T)
 1. Press `Ctrl+Shift+T` (Windows/Linux) or `Cmd+Shift+T` (Mac)
-2. Enter the text you want to translate
-3. Press Enter to see the translation result
-4. Copy the translation or press Esc to close
+2. Select source and target languages (or use defaults)
+3. Enter the text you want to translate
+4. Press Enter to see the translation result
+5. Copy the translation or press Esc to close
 
 ### Method 2: Selection Translation (Ctrl+Alt+T)
 1. Select text in your editor
 2. Press `Ctrl+Alt+T` (Windows/Linux) or `Cmd+Alt+T` (Mac)
-3. View the translation result
-4. Press Enter to replace the selection with translation, or Esc to keep original
+3. Select source and target languages (or use defaults)
+4. View the translation result
+5. Press Enter to replace the selection with translation, or Esc to keep original
 
 ### Method 3: Context Menu Translation (Right-click)
 1. Select text in your editor
 2. Right-click on the selected text
 3. Click "Translate Selection" (or "翻译选中内容" in Chinese)
-4. View the translation result
-5. Press Enter to replace the selection with translation, or Esc to keep original
+4. Select source and target languages (or use defaults)
+5. View the translation result
+6. Press Enter to replace the selection with translation, or Esc to keep original
 
 ### Method 4: Status Bar Button
 1. Click the "$(globe) Translate" button in the status bar (bottom right)
-2. Enter the text you want to translate
-3. Press Enter to see the translation result
+2. Select source and target languages (or use defaults)
+3. Enter the text you want to translate
+4. Press Enter to see the translation result
 
 ## Configuration
 
-You can configure the source and target languages in VSCode settings:
+You can configure the extension in VSCode settings:
 
 1. Open Settings (File > Preferences > Settings)
 2. Search for "Bing Translator"
-3. Set your preferred languages:
-   - **Source Language**: Default is `en` (English)
-   - **Target Language**: Default is `zh-Hans` (Chinese Simplified)
+3. Available settings:
+   - **Source Language**: Default source language (default: `en`)
+   - **Target Language**: Default target language (default: `zh-Hans`)
+   - **Use Webview UI**: Use unified Webview interface (default: `true`)
+     - When enabled: Modern panel with all options in one place
+     - When disabled: Multi-step QuickPick interface
 
 ### Supported Language Codes
 

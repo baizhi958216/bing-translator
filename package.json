@@ -2,7 +2,7 @@
   "name": "bing-translator",
   "displayName": "%displayName%",
   "description": "%description%",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "baizhi958216",
   "icon": "icon.png",
   "repository": {
@@ -74,6 +74,11 @@
           "type": "string",
           "default": "zh-Hans",
           "description": "%config.targetLanguage.description%"
+        },
+        "bing-translator.useWebviewUI": {
+          "type": "boolean",
+          "default": true,
+          "description": "%config.useWebviewUI.description%"
         }
       }
     }

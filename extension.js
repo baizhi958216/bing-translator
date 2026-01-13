@@ -16,7 +16,7 @@ async function activate(context) {
     context.subscriptions.push(statusBarManager);
     statusBarManager.show();
 
-    commands = new Commands(translator, statusBarManager);
+    commands = new Commands(translator, statusBarManager, context.extensionUri);
     commands.register(context);
 
     context.subscriptions.push(

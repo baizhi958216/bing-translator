@@ -15,11 +15,16 @@ const messages = {
         'statusBar.text': 'Translate',
         'statusBar.tooltip': 'Translate text ({0} → {1})\nClick or press Ctrl+Shift+T',
 
+        'selectLanguage.source': 'Select source language',
+        'selectLanguage.target': 'Select target language',
+
         'error.failed': 'Failed to translate text',
         'error.captcha': 'Translation service requires verification. Please try again later.',
         'error.limitExceeded': 'Translation limit exceeded. Please try again later.',
         'error.network': 'Failed to connect to translation service. Check your internet connection.',
-        'error.config': 'Failed to initialize translation service. Please try again.'
+        'error.config': 'Failed to initialize translation service. Please try again.',
+
+        'replace.success': 'Text replaced successfully'
     },
     'zh-cn': {
         'translate.prompt': '输入要翻译的文本 ({0} → {1})',
@@ -35,11 +40,16 @@ const messages = {
         'statusBar.text': '翻译',
         'statusBar.tooltip': '翻译文本 ({0} → {1})\n点击或按 Ctrl+Shift+T',
 
+        'selectLanguage.source': '选择源语言',
+        'selectLanguage.target': '选择目标语言',
+
         'error.failed': '翻译文本失败',
         'error.captcha': '翻译服务需要验证。请稍后再试。',
         'error.limitExceeded': '翻译次数超限。请稍后再试。',
         'error.network': '无法连接到翻译服务。请检查您的网络连接。',
-        'error.config': '初始化翻译服务失败。请重试。'
+        'error.config': '初始化翻译服务失败。请重试。',
+
+        'replace.success': '文本替换成功'
     }
 };
 

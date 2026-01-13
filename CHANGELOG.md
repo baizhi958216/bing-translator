@@ -5,6 +5,32 @@ All notable changes to the "bing-translator" extension will be documented in thi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.4] - 2026-01-13
+
+### Added
+- **Dynamic Language Selection**: Users can now select source and target languages when translating, instead of relying solely on settings
+- **Unified Webview Translation Interface**: New modern translation panel with all options in one place
+  - Source and target language dropdowns
+  - Language swap button for quick reversal
+  - Text input area with multi-line support
+  - Translation result display area
+  - Copy result and replace selection buttons
+  - Ctrl+Enter keyboard shortcut for quick translation
+- **UI Mode Configuration**: New `useWebviewUI` setting to switch between interface modes
+  - Webview mode (default): Unified interface with all options in one panel
+  - QuickPick mode: Multi-step interface with separate language selection dialogs
+- **Language List Module**: Added comprehensive language list with 30+ common languages
+  - Support for both English and Chinese language names
+  - Auto-detect option for source language
+
+### Improved
+- Enhanced internationalization support
+  - All user-facing strings now properly localized
+  - Fixed hardcoded English strings in commands.js
+  - Added language selection prompts to i18n module
+- Better user experience with flexible translation workflow
+- Automatic language name display based on VS Code language settings
+
 ## [1.0.3] - 2026-01-10
 
 ### Fixed

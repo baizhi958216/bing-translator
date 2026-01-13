@@ -1,10 +1,13 @@
 const vscode = require('vscode');
+const TranslatePanel = require('./translate-panel');
 const i18n = require('./i18n');
+const { getLanguageQuickPickItems } = require('./languages');
 
 class Commands {
-    constructor(translator, statusBarManager) {
+    constructor(translator, statusBarManager, extensionUri) {
         this.translator = translator;
         this.statusBarManager = statusBarManager;
+        this.extensionUri = extensionUri;
     }
 
     register(context) {
@@ -17,11 +20,56 @@ class Commands {
         );
     }
 
+    async selectLanguage(promptMessage, defaultLang, locale = 'en') {
+        const items = getLanguageQuickPickItems(locale);
+
+        const selected = await vscode.window.showQuickPick(items, {
+            placeHolder: promptMessage,
+            matchOnDescription: true
+        });
+
+        return selected ? selected.code : null;
+    }
+
     async translate() {
+        const config = vscode.workspace.getConfiguration('bing-translator');
+        const useWebviewUI = config.get('useWebviewUI', true);
+
+        if (useWebviewUI) {
+            TranslatePanel.createOrShow(this.extensionUri, this.translator);
+        } else {
+            await this.translateWithQuickPick();
+        }
+    }
+
+    async translateWithQuickPick() {
         try {
             const config = vscode.workspace.getConfiguration('bing-translator');
-            const sourceLang = config.get('sourceLanguage', 'en');
-            const targetLang = config.get('targetLanguage', 'zh-Hans');
+            const defaultSourceLang = config.get('sourceLanguage', 'en');
+            const defaultTargetLang = config.get('targetLanguage', 'zh-Hans');
+            const locale = vscode.env.language;
+
+            // Select source language
+            const sourceLang = await this.selectLanguage(
+                i18n.getMessage('selectLanguage.source'),
+                defaultSourceLang,
+                locale
+            );
+
+            if (!sourceLang) {
+                return;
+            }
+
+            // Select target language
+            const targetLang = await this.selectLanguage(
+                i18n.getMessage('selectLanguage.target'),
+                defaultTargetLang,
+                locale
+            );
+
+            if (!targetLang) {
+                return;
+            }
 
             const sourceText = await vscode.window.showInputBox({
                 prompt: i18n.getMessage('translate.prompt', sourceLang, targetLang),
@@ -55,24 +103,58 @@ class Commands {
     }
 
     async translateSelection() {
+        const editor = vscode.window.activeTextEditor;
+        if (!editor) {
+            vscode.window.showWarningMessage(i18n.getMessage('translateSelection.noEditor'));
+            return;
+        }
+
+        const selection = editor.selection;
+        const selectedText = editor.document.getText(selection);
+
+        if (!selectedText.trim()) {
+            vscode.window.showWarningMessage(i18n.getMessage('translateSelection.noSelection'));
+            return;
+        }
+
+        const config = vscode.workspace.getConfiguration('bing-translator');
+        const useWebviewUI = config.get('useWebviewUI', true);
+
+        if (useWebviewUI) {
+            TranslatePanel.createOrShow(this.extensionUri, this.translator, selectedText);
+        } else {
+            await this.translateSelectionWithQuickPick(editor, selection, selectedText);
+        }
+    }
+
+    async translateSelectionWithQuickPick(editor, selection, selectedText) {
         try {
-            const editor = vscode.window.activeTextEditor;
-            if (!editor) {
-                vscode.window.showWarningMessage(i18n.getMessage('translateSelection.noEditor'));
-                return;
-            }
-
-            const selection = editor.selection;
-            const selectedText = editor.document.getText(selection);
-
-            if (!selectedText.trim()) {
-                vscode.window.showWarningMessage(i18n.getMessage('translateSelection.noSelection'));
-                return;
-            }
-
             const config = vscode.workspace.getConfiguration('bing-translator');
-            const sourceLang = config.get('sourceLanguage', 'en');
-            const targetLang = config.get('targetLanguage', 'zh-Hans');
+            const defaultSourceLang = config.get('sourceLanguage', 'en');
+            const defaultTargetLang = config.get('targetLanguage', 'zh-Hans');
+            const locale = vscode.env.language;
+
+            // Select source language
+            const sourceLang = await this.selectLanguage(
+                i18n.getMessage('selectLanguage.source'),
+                defaultSourceLang,
+                locale
+            );
+
+            if (!sourceLang) {
+                return;
+            }
+
+            // Select target language
+            const targetLang = await this.selectLanguage(
+                i18n.getMessage('selectLanguage.target'),
+                defaultTargetLang,
+                locale
+            );
+
+            if (!targetLang) {
+                return;
+            }
 
             const translation = await vscode.window.withProgress({
                 location: vscode.ProgressLocation.Notification,

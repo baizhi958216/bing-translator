@@ -5,5 +5,6 @@
   "command.translateSelection.title": "翻译选中内容",
   "config.title": "Bing 翻译器",
   "config.sourceLanguage.description": "源语言代码（例如：'en' 表示英语，'auto-detect' 表示自动检测）",
-  "config.targetLanguage.description": "目标语言代码（例如：'zh-Hans' 表示简体中文）"
+  "config.targetLanguage.description": "目标语言代码（例如：'zh-Hans' 表示简体中文）",
+  "config.useWebviewUI.description": "使用统一的 Webview 界面进行翻译（如果禁用，将使用多步骤快速选择界面）"
 }
